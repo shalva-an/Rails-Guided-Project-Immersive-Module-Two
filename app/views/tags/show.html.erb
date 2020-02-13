@@ -1,2 +1,4 @@
-<h1>Tags#show</h1>
-<p>Find me in app/views/tags/show.html.erb</p>
+<h1>Here are some <%=@tag.name%> pictures!</h1>
+<% @tag.pictures.each do |picture| %>
+  <h3><%= image_tag picture.image_url %></h3>
+<%end%>
