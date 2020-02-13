@@ -1,2 +1,8 @@
-<h1>Sessions#signin</h1>
-<p>Find me in app/views/sessions/signin.html.erb</p>
+<div class="sign_in_form">
+<%= form_tag("/sessions", method: "post") do %>
+  Username: <%= text_field_tag("username") %><br>
+  Password: <%= password_field_tag("password") %><br>
+  <br>
+  <%= submit_tag "Sign In", class: 'sign_in_button'%>
+<% end %>
+</div>
