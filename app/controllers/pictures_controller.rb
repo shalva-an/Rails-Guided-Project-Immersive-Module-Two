@@ -17,7 +17,7 @@ class PicturesController < ApplicationController
   
   def show 
     @picture = Picture.find(params[:id])
-    @comment = Comment.new(picture_id: @picture.id, user_ud: 1)
+    @comment = Comment.new(picture_id: @picture.id, user_id: 1)
     @reaction = Reaction.new(picture_id: @picture.id, user_id: current_user.id)
     @comments = @picture.comments
   end

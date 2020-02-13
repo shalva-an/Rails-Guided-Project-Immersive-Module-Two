@@ -10,7 +10,7 @@
 <%if @picture.user.id == current_user.id%>
   <p><%= link_to "Delete Pic", picture_path(@picture), :method => :delete %></p>
 <%end%>
-<p>tags: </p><% @picture.tags.reject {|c| c.name.empty?}.each do |tag|%>
+<p>tags: </p><% @picture.tags.reject {|c| c.name.empty?}.each do |tag|%><p>
   <%=link_to tag.name, tag_path(tag)%>
 <%end%>
 <h1> Comment: <h1>
@@ -23,9 +23,9 @@
 <% end %><br>
 <% @comments.each do |comment| %>
   <%if comment.user %>
-    <%= link_to comment.user.username, user_path(comment.user) %> : <%= comment.content %>
+  <p>  <%= link_to comment.user.username, user_path(comment.user) %> : <%= comment.content %>
     <%if comment.user.id == current_user.id || @picture.user.id == current_user.id%>
-      <%= link_to "(delete comment)", comment, :method => 'delete' %><br>
+      <%= link_to "(delete comment)", comment, :method => 'delete' %><p>
     <%end%>
   <%else%>
       (deleted): <%=comment.content%><br>

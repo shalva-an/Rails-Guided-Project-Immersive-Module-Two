@@ -1,2 +1,9 @@
-<h1>Followings#show</h1>
-<p>Find me in app/views/followings/show.html.erb</p>
+<h1>Followers</h1>
+<%= @following.followed.followers.each do |follower|%>
+  <%=link_to follower.follower.username, user_path(follower)%>
+<%end%>
+
+<h1>Following</h1>
+<%= @user.followeds.each do |followed|%>
+  <%=link_to followed.followed.username, user_path(follower)%>
+<%end%>

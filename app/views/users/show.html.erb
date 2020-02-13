@@ -1,25 +1,46 @@
-<h1> <%= @user.username %></h1>
+<% total_followers = @user.followers.map do |follower|%>
+  <% follower.follower %>
+<% end %>
+<% total_followeds = @user.followeds.map do |follower|%>
+  <% follower.followed %>
+<% end %>
+<h1> <%= @user.username %></h1> <h4>Followers: <%=total_followers.count%> Following: <%=total_followeds.count%></h4>
 <%if @user.id == current_user.id%>
-  <h2><%=link_to "please share an image!", new_picture_path %></h2>
-  <%= link_to "Home Page", users_path %><br>
-  <br>
-  <%else%>
+  <h2><%=link_to "Share a picture!", new_picture_path %></h2>
     <%= link_to "Home Page", users_path %><br>
-  <%end%>
+<%else%>
+    <%=link_to "Back to your profile", current_user%></h2>
+  <br>
+    <%= link_to "Home Page", users_path %><br>
+<%end%>
 
-  <%if @user.pictures.empty?%>
-    <h1>Share some pictures!</h1>
+<% if @user != current_user %>
+  <% if total_followers.include?(current_user) %>
+    <%="Following"%>
   <%else%>
-    <%if @user.id == current_user.id%>
-      <h2>Here are your pictures!</h2>
-    <%else%>
-      <h2>Here are <%= @user.username %>'s pics... </h2>
+    <%= form_for Following.new do |f| %>
+    <%= f.hidden_field :followed_id, :value => @user.id%> <br>
+    <%= f.hidden_field :follower_id, :value => current_user.id %> <br>
+    <%= f.submit value="Follow"%>
     <%end%>
-      <%@pictures.order('created_at DESC').each do |picture| %>
-      <h1><%= picture.title %><h2>
-        <%= link_to (image_tag (picture.image_url), style:"height: auto; width: 300px;"), picture_path(picture) %><br>
-    <% end %>
   <%end%>
+<%end%>
+
+
+<%if @user.pictures.empty?%>
+  <h1>Share some pics!</h1>
+<%else%>
+  <%if @user.id == current_user.id%>
+    <h2>Here are your pics!</h2>
+  <%else%>
+    <h2>Here are <%= @user.username %>'s pics... </h2>
+  <%end%>
+    <%@pictures.order('created_at DESC').each do |picture| %>
+      <h1><%= picture.title %><h2>
+      <%= link_to (image_tag (picture.image_url), style:"height: auto; width: 300px;"), picture_path(picture) %><br>
+    <% end %>
+<%end%>
+
 <%if @user.id == current_user.id %>
   <h4><%= link_to "Delete Account", user_path(@user), :method => 'delete' %></h4>
 <%end%>
