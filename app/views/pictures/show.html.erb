@@ -1,2 +1,15 @@
-<h1>Pictures#show</h1>
-<p>Find me in app/views/pictures/show.html.erb</p>
+<h2><%=link_to "Back to Profile", @picture.user%></h2>
+
+<h1><%= @picture.title %></h1>
+<%= image_tag (@picture.image_url) %>
+<h1> Comment on this picture: <h1>
+<%= form_for @comment do |f| %>
+<%= f.text_area :content %> <br>
+<%= hidden_field_tag :picture_id, @picture.id %> <br>
+
+
+<%= f.submit %>
+<% end %><br>
+<% @comments.each do |comment| %>
+<%= comment.user.username %> : <%= comment.content %> <br>
+<% end %>

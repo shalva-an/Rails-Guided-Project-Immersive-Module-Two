@@ -1,8 +1,8 @@
-<div class="sign_in_form">
+<div>
+<h1> Please sign in to your account! </h1>
 <%= form_tag("/sessions", method: "post") do %>
-  Username: <%= text_field_tag("username") %><br>
-  Password: <%= password_field_tag("password") %><br>
-  <br>
-  <%= submit_tag "Sign In", class: 'sign_in_button'%>
+  Username:<%= text_field_tag("username") %><br>
+  Password:<%= password_field_tag("password") %><br>
+  <%= submit_tag("Sign in") %>
 <% end %>
 </div>
