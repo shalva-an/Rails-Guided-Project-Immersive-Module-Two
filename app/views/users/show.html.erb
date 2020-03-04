@@ -33,7 +33,7 @@
   <%if @user.id == current_user.id%>
     <h2>Here are your pics!</h2>
   <%else%>
-    <h2>Here are <%= @user.username %>'s pics... </h2>
+    <h2>Here are <%= @user.username %>'s pictures... </h2>
   <%end%>
     <%@pictures.order('created_at DESC').each do |picture| %>
       <h1><%= picture.title %><h2>

@@ -13,6 +13,11 @@
 <p>tags: </p><% @picture.tags.reject {|c| c.name.empty?}.each do |tag|%><p>
   <%=link_to tag.name, tag_path(tag)%>
 <%end%>
+
+
+
+
+
 <h1> Comment: <h1>
 <%= form_for @comment do |f| %>
   <%= f.hidden_field :picture_id %> <br>
