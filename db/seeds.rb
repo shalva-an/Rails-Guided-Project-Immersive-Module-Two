@@ -7,7 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 #Users
-user1 = User.create(username: "admin", email: "admin@shalva.io", password: "password")
 user2 = User.create(email: "two@shalva.io" , username: "Shalva" , password: "pass1")
 user3 = User.create(email: "three@shalva.io" , username: "Ramzay" , password: "ramzay1")
 user4 = User.create(email: "four@shalva.io" , username: "Cindy" , password: "cindy1")
