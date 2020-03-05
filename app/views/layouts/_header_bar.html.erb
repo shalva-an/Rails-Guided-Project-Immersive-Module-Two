@@ -1,0 +1,13 @@
+<ul class="header">
+  <% if signed_in? %>
+      <li><%= link_to (image_tag (''), style:"height: auto; width: 25px; margin-top: 5px;"), users_path %></li>
+      <li><%= link_to "Home", users_path, {:style => 'text-decoration: none; color: white; display: block; padding: 15px; margin: auto; font-family: Ubuntu; font-size: 1.5vw;'} %></li>
+      <li><%= link_to 'Upload!', new_picture_path, {:style => 'text-decoration: none; color: white; display: block; font-family: Ubuntu; font-size: 1.5vw; padding: 15px; margin: auto;'}  %></li>
+      <li><%=link_to "sign out", signout_path, {:style => 'text-decoration: none; color: white; display: block; font-family: Ubuntu; font-size: 1.5vw; padding: 15px; margin: auto;'} %></li>
+      <li class="hello_user">Hey <%= link_to current_user.username.capitalize, current_user, {:style => 'text-decoration: none;, font-color: white;, font-family: Ubuntu; font-size: 1.5vw;'} %> !</li>
+<% else %>
+        <li><%= link_to (image_tag (''), style:"height: auto; width: 25px; margin-top: 5px;"), users_path %></li>
+        <li><%=link_to "Please sign in!", signin_path, {:style => 'text-decoration: none; color: white; display: block; font-family: Ubuntu; font-size: 1.5vw; padding: 15px; margin: auto;'}  %> </li>
+        <li><%= link_to "Or Create An Account", users_signup_path, {:style => 'text-decoration: none; color: white; display: block; font-family: Ubuntu; font-size: 1.5vw; padding: 15px; margin: auto;'}  %></li>
+<% end %>
+</ul>

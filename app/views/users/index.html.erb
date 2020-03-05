@@ -1,5 +1,28 @@
-<h3><%= link_to ("Create Account!"), users_signup_path%></h3>
-<h1>Current Users</h1>
+<div class='banner'>
+  <%= image_tag (''), :class => 'banner_img', style:"height: auto; width: 70%;  margin: 15%; margin-top: 4%; margin-bottom: 3%;"%>
+</div>
+<div class="users_you_may_know_div">
+<h1>Users you may know!</h1>
 <% @users.each do |user| %>
-<h4><%= link_to user.username.capitalize, user_path(user) %> <h4>
+  <div class="individual_user_on_index">
+    <h4 class="users_you_may_know"><%= link_to user.username, user_path(user), {:style => 'text-decoration: none; color: white; display: block; padding: 8%; margin: auto; font-family: Ubuntu; font-size: 1.3vw;'} %> <h4>
+  </div>
 <% end %>
+</div>
+
+<div class="index_pictures">
+    <%if Picture.all.count > 16 %>
+      <%Picture.all.sample(16).each do |picture|%>
+        <div class="index_picture_child">
+          <%= link_to (image_tag (picture.image_url), class: 'single_index_pictures', style:"height: auto; text-decoration: none;"), picture_path(picture) %>
+        </div>
+        <%end%>
+  <%else%>
+        <%Picture.all.sample(Picture.all.length).each do |picture| %>
+          <div class="index_picture_child">
+            <%= link_to (image_tag (picture.image_url), class: 'single_index_pictures', style:"height: auto; text-decoration: none;"), picture_path(picture) %>
+          </div>
+        <%end%>
+  <%end%>
+
+</div>

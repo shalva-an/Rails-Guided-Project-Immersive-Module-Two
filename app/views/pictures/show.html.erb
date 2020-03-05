@@ -1,12 +1,7 @@
-<%if current_user.username != @picture.user.username%>
-  <h2><%=link_to "Back to #{@picture.user.username}'s profile...", @picture.user%></h2>
-  <h2><%=link_to "Back to your Profile!", current_user%></h2>
-<%else%>
-  <h2><%=link_to "Back to your Profile!", current_user%></h2>
-<%end%>
+<br> <br>
 
-<h1><%= @picture.title %></h1>
-<%= image_tag (@picture.image_url) %>
+<h1 class="username_profile"><%= @picture.title %></h1>
+<%= image_tag (@picture.image_url), class: 'show_img', style:"height: auto; width: 40%; display: block;"  %>
 <%if @picture.user.id == current_user.id%>
   <p><%= link_to "Delete Pic", picture_path(@picture), :method => :delete %></p>
 <%end%>
@@ -15,24 +10,24 @@
 <%end%>
 
 
+<% @comments.each do |comment| %>
+  <%if comment.user %>
+  <p class="comments">  <%= link_to( "@"+comment.user.username, user_path(comment.user), {:style => 'text-decoration: none; display: block; padding: 15px; margin: auto; font-family: Ubuntu; font-size: 1.5vw;'}) %>  <%= comment.content %>
+    <%if comment.user.id == current_user.id || @picture.user.id == current_user.id%>
+      <%= link_to "(delete comment)", comment, :method => 'delete', data: {confirm: 'Are you sure?' } %>
+    </p>
+    <%end%>
+  <%else%>
+      (deleted): <%=comment.content%><br>
+  <%end%>
+<% end %>
 
 
-
-<h1> Comment: <h1>
+<h3> Comment: 
 <%= form_for @comment do |f| %>
   <%= f.hidden_field :picture_id %> <br>
   <%= f.hidden_field :user_id %> <br>
   <%= f.text_area :content %> <br>
 
   <%= f.submit %>
-<% end %><br>
-<% @comments.each do |comment| %>
-  <%if comment.user %>
-  <p>  <%= link_to comment.user.username, user_path(comment.user) %> : <%= comment.content %>
-    <%if comment.user.id == current_user.id || @picture.user.id == current_user.id%>
-      <%= link_to "(delete comment)", comment, :method => 'delete' %><p>
-    <%end%>
-  <%else%>
-      (deleted): <%=comment.content%><br>
-  <%end%>
-<% end %>
+<% end %><br> <h3>

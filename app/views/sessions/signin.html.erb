@@ -1,8 +1,12 @@
-<div>
+<div class='banner'>
+<%= image_tag (''), :class => 'banner_img', style:"height: auto; width: 80%;  margin: 10%; margin-top: 4%; margin-bottom: 3%;"%>
+</div>
+
+<div class="sign_in_form">
 <h1> Please sign in to your account! </h1>
 <%= form_tag("/sessions", method: "post") do %>
   Username:<%= text_field_tag("username") %><br>
   Password:<%= password_field_tag("password") %><br>
-  <%= submit_tag("Sign in") %>
+  <%= submit_tag "Sign In", class: 'sign_in_button'%>
 <% end %>
 </div>

@@ -1,4 +1,8 @@
-<h1>Here are some <%=@tag.name%> pictures!</h1>
-<% @tag.pictures.each do |picture| %>
-  <h3><%= image_tag picture.image_url %></h3>
-<%end%>
+<h1>Here are some <%=@tag.name%> pics!</h1>
+
+<div class="picture_grid_user_show">
+<%@tag.pictures.order('created_at DESC').each do |picture| %>
+<h3><%= picture.title %><h3>
+    <%= link_to (image_tag (picture.image_url), class: 'user_img', style:"height: auto; width: 80%;"), picture_path(picture) %>
+<% end %>
+</div>
