@@ -10,6 +10,42 @@
 <%end%>
 
 
+<div class="reactions">
+  <ul>
+    <li><div style="text-align:center"><%= @picture.reactions.where("reaction_key = 'happy'").count %></div>
+      <%= form_for @reaction do |f| %>
+        <%= f.hidden_field :picture_id %>
+        <%= f.hidden_field :user_id %>
+        <%= f.hidden_field :reaction_key, :value => @reaction.class.reaction_pictures.keys[0]%>
+        <%= f.submit "reaction", :class => 'reaction', :type => :image, :src => @reaction.class.reaction_pictures["happy"] %>
+    <% end %>
+    </li>
+<li><div style="text-align:center"><%= @picture.reactions.where("reaction_key = 'sad'").count %></div>
+  <%= form_for @reaction do |f| %>
+    <%= f.hidden_field :picture_id %>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :reaction_key, :value => @reaction.class.reaction_pictures.keys[1]%>
+    <%= f.submit "reaction", :class => 'reaction', :type => :image, :src => @reaction.class.reaction_pictures["sad"] %>
+<% end %>
+</li>
+<li><div style="text-align:center"><%= @picture.reactions.where("reaction_key = 'excited'").count %></div>
+  <%= form_for @reaction do |f| %>
+    <%= f.hidden_field :picture_id %>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :reaction_key, :value => @reaction.class.reaction_pictures.keys[2]%>
+    <%= f.submit "reaction", :class => 'reaction', :type => :image, :src => @reaction.class.reaction_pictures["excited"] %>
+<% end %>
+</li>
+<li><div style="text-align:center"><%= @picture.reactions.where("reaction_key = 'angry'").count %></div>
+  <%= form_for @reaction do |f| %>
+    <%= f.hidden_field :picture_id %>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :reaction_key, :value => @reaction.class.reaction_pictures.keys[3]%>
+    <%= f.submit "reaction", :class => 'reaction', :type => :image, :src => @reaction.class.reaction_pictures["angry"] %>
+<% end %>
+</li>
+</div>
+
 <% @comments.each do |comment| %>
   <%if comment.user %>
   <p class="comments">  <%= link_to( "@"+comment.user.username, user_path(comment.user), {:style => 'text-decoration: none; display: block; padding: 15px; margin: auto; font-family: Ubuntu; font-size: 1.5vw;'}) %>  <%= comment.content %>
